@@ -31,5 +31,5 @@
     - prerequisite
     - firewall
     - user
-    - ray
     - certbot
+    - ray
