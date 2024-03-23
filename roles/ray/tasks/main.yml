@@ -63,7 +63,6 @@
   loop:
     - '    ports:'
     - '      - 443:2053'
-    - '      - 80:2053'
 
 - name: Docker compose up
   become: true
