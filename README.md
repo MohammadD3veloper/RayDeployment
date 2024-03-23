@@ -22,7 +22,7 @@ add your servers / server on files on it
         ...
 ### run project
 
-Just run the playbook and answer the prompts then wait till getting completed.
+Just run the playbook and answer the prompts then take a coffee till its getting completed.
 
 $ ``` ansible-playbook -i inventory playbooks/main.yml ```
 
