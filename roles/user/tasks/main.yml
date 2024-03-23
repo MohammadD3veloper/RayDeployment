@@ -1,0 +1,10 @@
+---
+
+
+- name: Create a {{user_install}} user
+  user:
+    name: "{{user_install}}"
+    shell: /bin/bash
+    groups: docker,sudo
+    append: true
+    password: "{{user_password}}"

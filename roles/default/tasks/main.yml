@@ -1,0 +1,23 @@
+---
+
+
+- name: Update packages
+  apt:
+    update_cache: true
+    upgrade: true
+    state: present
+    cache_valid_time: 86400 # One day
+
+- name: Install required system packages
+  apt:
+    pkg:
+      - apt-transport-https
+      - ca-certificates
+      - curl
+      - software-properties-common
+      - python3-pip
+      - virtualenv
+      - python3-setuptools
+      - certbot
+    state: latest
+    update_cache: true

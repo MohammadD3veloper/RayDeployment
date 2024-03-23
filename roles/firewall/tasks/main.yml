@@ -1,0 +1,20 @@
+---
+
+
+- name: Enable ufw
+  ufw:
+    state: enabled
+
+- name: Config ufw for limit ssh
+  ufw:
+    rule: limit
+    port: ssh
+    proto: tcp
+
+- name: Config ufw for allow ports
+  ufw:
+    rule: allow
+    port: "{{ item }}"
+    proto: tcp
+  loop:
+    "{{ allowed_ports.split(',') }}"
