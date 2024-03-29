@@ -1,0 +1,45 @@
+---
+
+- name: Create work directory
+  file:
+    path: /opt/xui
+    state: directory
+    when: panel == 'xui'
+
+- name: copy requirement files
+  copy:
+    src: files/
+    dest: /opt/xui
+    when: panel == 'xui'
+
+- name: Replace example with real domain
+  replace:
+    path: "/opt/xui/nginx/nginx.conf"
+    regexp: 'example.com'
+    replace: '{{user_domain}}'
+    when: panel == 'xui'
+
+- name: Replace port custom user port
+  replace:
+    path: "/opt/xui/nginx/nginx.conf"
+    regexp: '80'
+    replace: '{{default_port}}'
+  when: panel == 'xui' and default_port != 443
+
+- name: Replace port custom user port
+  replace:
+    path: "/opt/xui/nginx/nginx.conf"
+    regexp: '80'
+    replace: '{{default_port}} ssl'
+  when: panel == 'xui' and default_port == 443
+
+- name: Docker compose down
+  docker_compose:
+    project_src: "/opt/xui/"
+    state: absent
+    when: panel == 'xui'
+
+- name: Docker compose up
+  docker_compose:
+    project_src: "/opt/xui"
+    when: panel == 'xui'

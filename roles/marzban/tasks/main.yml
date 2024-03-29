@@ -1,0 +1,26 @@
+---
+
+- name: Create work directory
+  file:
+    path: /opt/marzban
+    state: directory
+
+- name: copy requirement files
+  copy:
+    src: files/
+    dest: /opt/marzban
+
+- name: Replace port custom user port
+  replace:
+    path: "/opt/marzban/.env"
+    regexp: '8000'
+    replace: '{{default_port}}'
+
+- name: Docker compose down
+  docker_compose:
+    project_src: "/opt/marzban/"
+    state: absent
+
+- name: Docker compose up
+  docker_compose:
+    project_src: "/opt/marzban"

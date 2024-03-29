@@ -4,10 +4,3 @@
   shell: |
     certbot certonly --standalone --register-unsafely-without-email --agree-tos -d {{user_domain}}
   register: cert_out
-  when: user_install != "root"
-
-- name: Getting certbot certificates for {{ user_domain }}
-  shell: |
-    certbot certonly --standalone --register-unsafely-without-email --agree-tos -d {{user_domain}}
-  register: cert_out
-  when: user_install == "root"

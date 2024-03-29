@@ -8,3 +8,4 @@
     groups: docker,sudo
     append: true
     password: "{{user_password}}"
+  when: user_install != 'root'

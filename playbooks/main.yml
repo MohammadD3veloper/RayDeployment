@@ -23,8 +23,12 @@
       prompt: "Enter your domain"
     - name: default_port
       private: false
-      prompt: "Enter port of 3xui server"
-      default: '2053'
+      prompt: "Enter port of server"
+      default: '80'
+    - name: panel
+      private: false
+      prompt: "3xui or marzban?"
+      default: "marzban"
   
   roles:
     - default
@@ -32,4 +36,5 @@
     - firewall
     - user
     - certbot
-    - ray
+    - marzban
+    - xui
